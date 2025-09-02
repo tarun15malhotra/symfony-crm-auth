@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}
+    {# Include auth-specific CSS #}
+    <link rel="stylesheet" href="{{ asset('auth/css/style.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {# Include auth-specific JS #}
+    <script src="{{ asset('auth/js/style.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<form method="post" action="{{ path('app_login') }}"
+      style="max-width: 400px; margin: 50px auto; padding: 30px; background: #fff;
+             border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: 'Segoe UI', sans-serif;">
+
+    <h2 style="text-align:center; margin-bottom:20px;">Login</h2>
+
+    {% if error %}
+        <div style="color: red; margin-bottom: 15px;">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    <div style="margin-bottom: 15px;">
+        <label for="inputEmail">Email</label>
+        <input type="text" value="{{ last_username }}" name="email" id="inputEmail"
+               required autofocus style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword"
+               required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <button type="submit"
+            style="width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">
+        Login
+    </button>
+</form>
+{% endblock %}

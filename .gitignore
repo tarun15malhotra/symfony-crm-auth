@@ -1,0 +1,23 @@
+# Ignore local environment overrides
+/.env.local
+/.env.local.php
+/.env.*.local
+
+# Ignore vendor folder
+/vendor/
+
+# Ignore Symfony cache, logs, sessions
+/var/
+/var/cache/
+/var/log/
+/var/sessions/
+
+# Optional IDE/system files
+/.idea/
+/*.iml
+/.vscode/
+/.DS_Store
+
+
+# Ignore Node modules in themekit
+/public/themekit/node_modules/
